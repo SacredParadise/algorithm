@@ -1,0 +1,19 @@
+
+Qsquid:S1191"5Use classes from the Java API instead of Sun classes.(æ¶ßøÿÿÿÿ
+bsquid:CommentedOutCodeLine¡"<This block of commented-out lines of code should be removed.(¼“ª"
+U
+squid:S106«"9Replace this use of System.out or System.err by a logger.(Ü”¦úÿÿÿÿ
+U
+squid:S106µ"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+U
+squid:S106½"9Replace this use of System.out or System.err by a logger.(¿¢ŒÃúÿÿÿÿ
+U
+squid:S106¾"9Replace this use of System.out or System.err by a logger.(½Å©úÿÿÿÿ
+Isquid:S1135m"2Complete the task associated to this TODO comment.(İõªƒ
+Jsquid:S1481•"-Remove this unused "trieNode" local variable.(Ş¢şıÿÿÿÿ
+hsquid:S3776q"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ä–‘\
+Zsquid:S2259®"BA "NullPointerException" could be thrown; "node" is nullable here.(†Œäœ
+>squid:S1168¦"&Return an empty array instead of null.(¥¹ï
+Gsquid:S00108•")Either remove or fill this block of code.(Ş¢şıÿÿÿÿ
+Wsquid:UselessImportCheck".Remove this unused import 'sun.dc.pr.PRError'.(æ¶ßøÿÿÿÿ
+msquid:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(È¦øÇùÿÿÿÿ

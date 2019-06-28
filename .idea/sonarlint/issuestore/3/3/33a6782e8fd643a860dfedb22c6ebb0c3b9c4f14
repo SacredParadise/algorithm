@@ -1,0 +1,6 @@
+
+jsquid:S3824T"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(Šê°úÿÿÿÿ
+jsquid:S3824S"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(šóÕÇşÿÿÿÿ
+@squid:S3398Œ"#Move this method into "GoldMining".(§ÚÒûÿÿÿÿ
+P
+squid:S106¬"9Replace this use of System.out or System.err by a logger.(Ú“Üİ
