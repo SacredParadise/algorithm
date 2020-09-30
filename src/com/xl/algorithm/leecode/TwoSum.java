@@ -33,11 +33,30 @@ public class TwoSum {
         int[] arr = {2, 7, 11, 15};
         int sum = 9;
 
-        twoSum(arr, sum);
+        int[] results = twoSum(arr, sum);
+        System.out.println(results);
     }
 
 
-    public static ArrayList<Integer> twoSum(int[] arr, int num) {
+    public static int[] twoSum(int[] nums, int target) {
+        //获得数组值和下标映射map
+        HashMap<Integer, Integer> dict = new HashMap<Integer, Integer>(nums.length);
+        Integer index;
+        for (int i = 0; i < nums.length; i++) {
+            int sub = target - nums[i];
+            index = dict.get(sub);
+            if (index != null && index != i) {
+                return new int[]{i, index};
+            }
+            dict.put(nums[i], i);
+        }
+
+
+        throw new IllegalArgumentException("No solution");
+    }
+
+
+public static ArrayList<Integer> twoSum2(int[] arr, int num) {
         if (arr == null || arr.length == 0) {
             return new ArrayList<>(0);
         }
@@ -69,22 +88,6 @@ public class TwoSum {
 
         return results;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

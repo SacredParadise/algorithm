@@ -1,6 +1,7 @@
 package com.xl.algorithm.leecode;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 无重复字符的最长子串
@@ -27,9 +28,81 @@ import java.util.LinkedList;
  */
 public class MaxSubStr {
     public static void main(String[] args) {
-        String str = "abcabcbb";
-        System.out.println(maxSubStr(str));
+//        String str = "abcabcbb";
+//        System.out.println(maxSubStr(str));
+
+        test();
     }
+
+
+    /**
+     * 基于窗口实现
+     * 该实现效率击败了100%，内存占用击败了98%
+     * @param s
+     * @return
+     */
+    public static int lengthOfLongestSubstring(String s) {
+        int maxLen = s.length() > 0 ? 1 : 0;
+        char[] chars = s.toCharArray();
+        int start = 0;
+        char temp;
+        int rIndex = -1;
+        for (int i = 1; i < chars.length; i++) {
+            temp = chars[i];
+            rIndex = -1;
+            //判断i ~ j 区间是否包含新字符、
+            for (int k = start; k <= i - 1; k++) {
+                if (temp == chars[k]) {
+                    rIndex = k;
+                    break;
+                }
+            }
+            if (rIndex >= 0) {
+                //若存在重复字符，则start置为重复字符
+                start = rIndex + 1;
+
+            }
+
+            maxLen = maxLen < i - start + 1 ? i - start + 1 : maxLen;
+        }
+
+        System.out.println(maxLen);
+
+        return maxLen;
+    }
+
+
+//    public static int lengthOfLongestSubstring(String s) {
+//        int maxLen = s.length() > 0 ? 1 : 0;
+//        char[] chars = s.toCharArray();
+//        int start = 0;
+//        int end = 0;
+//        char temp;
+//        int rIndex = -1;
+//        for (int i = 1; i < chars.length; i++) {
+//            temp = chars[i];
+//            rIndex = -1;
+//            //判断i ~ j 区间是否包含新字符、
+//            for (int k = start; k <= end; k++) {
+//                if (temp == chars[k]) {
+//                    rIndex = k;
+//                    break;
+//                }
+//            }
+//            if (rIndex < 0) {
+//                end = i;
+//            } else {
+//                //若存在重复字符，则start置为重复字符
+//                start = rIndex + 1;
+//                end = i;
+//            }
+//            maxLen = maxLen < end - start + 1 ? end - start + 1 : maxLen;
+//        }
+//
+//        System.out.println(maxLen);
+//
+//        return maxLen;
+//    }
 
 
 
@@ -62,5 +135,59 @@ public class MaxSubStr {
     }
 
 
+    public static int lengthOfLongestSubstring2(String s) {
+        LinkedList<Character> subStrs = new LinkedList();
+        int maxLen = 0;
+        char[] chars = s.toCharArray();
+        char temp;
+        for (int i = 0; i < chars.length; i++) {
+            temp = chars[i];
+            if (subStrs.contains(temp)) {
+//                int lastIndex = subStrs.lastIndexOf(temp);
+//                subStrs = subStrs.subList(lastIndex + 1, subStrs.size());
+                while (!subStrs.isEmpty()) {
+                    if (subStrs.pop() == temp) {
+                        break;
+                    }
+                }
 
+
+//                i = i - lastIndex + 1;
+            }
+//            else {
+//                subStrs.add(temp);
+//            }
+
+            subStrs.add(temp);
+
+            if (maxLen < subStrs.size()) {
+                maxLen = subStrs.size();
+            }
+        }
+        return maxLen;
+    }
+
+
+    private static  void test() {
+        String str = "aab";
+//        String str = "abcdefghijk";
+//        String str = "abcabcbb";
+//        String str = "eeeabdfcbcbb";
+//        String str = "ohvhjdml";
+//        int maxLen = lengthOfLongestSubstring(str);
+//        int maxLen = lengthOfLongestSubstring2(str);
+        ////        System.out.println(maxLen);
+
+        lengthOfLongestSubstring("aab");
+        lengthOfLongestSubstring("abcdefghijk");
+        lengthOfLongestSubstring("abcabcbb");
+        lengthOfLongestSubstring("eeeabdfcbcbb");
+        lengthOfLongestSubstring("ohvhjdml");
+        lengthOfLongestSubstring("aaaaaaaa");
+        lengthOfLongestSubstring(" ");
+        lengthOfLongestSubstring("");
+
+
+
+    }
 }

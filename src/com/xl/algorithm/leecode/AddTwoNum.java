@@ -27,6 +27,8 @@ import java.util.stream.Collectors;
  */
 public class AddTwoNum {
     public static void main(String[] args) {
+        test();
+
         LinkedList<Integer> num1 = new LinkedList<>();
         num1.add(2);
         num1.add(4);
@@ -102,7 +104,80 @@ public class AddTwoNum {
             result.add(sum % 10);
             sum = 0;
         }
+
+
+
         return result;
     }
 
+    static class ListNode {
+        int val;
+
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
+
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode head = new ListNode(0);
+        ListNode p = head;
+        int tempSum = 0;
+        int carry = 0;
+        while (l1 != null && l2 != null) {
+            tempSum = l1.val + l2.val + carry;
+            p.next = new ListNode(tempSum % 10);
+
+            carry = tempSum >= 10 ? 1 : 0;
+
+            l1 = l1.next;
+            l2 = l2.next;
+            p = p.next;
+        }
+
+        while (l1 != null) {
+            tempSum = l1.val + carry;
+            p.next = new ListNode(tempSum % 10);
+            carry = tempSum >= 10 ? 1 : 0;
+            l1 = l1.next;
+            p = p.next;
+        }
+
+        while (l2 != null) {
+            tempSum = l2.val + carry;
+            p.next = new ListNode(tempSum % 10);
+            carry = tempSum >= 10 ? 1 : 0;
+            l2 = l2.next;
+            p = p.next;
+        }
+
+        if (carry > 0) {
+            p.next = new ListNode(carry);
+        }
+
+        return head.next;
+    }
+
+    /**
+     *  输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
+     *  *     输出：7 -> 0 -> 8
+     *  *     原因：342 + 465 = 807
+     */
+    private static void test() {
+        ListNode l1 = new ListNode(2);
+        ListNode p1 = l1;
+        p1.next = new ListNode(4);
+        p1 = p1.next;
+        p1.next = new ListNode(3);
+
+        ListNode l2 = new ListNode(5);
+        ListNode p2 = l2;
+        p2.next = new ListNode(6);
+        p2 = p2.next;
+        p2.next = new ListNode(4);
+
+        ListNode result =  addTwoNumbers(l1, l2);
+        System.out.println(result);
+    }
 }
